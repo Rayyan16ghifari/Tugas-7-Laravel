@@ -9,10 +9,6 @@ class Book extends Model
 {
     use HasFactory;
 
-    // Nama tabel kalau beda dari konvensi (books)
-    // protected $table = 'books';
-
-    // Kolom yang boleh diisi secara massal (mass assignable)
     protected $fillable = [
         'title',
         'author_id',
@@ -32,5 +28,11 @@ class Book extends Model
     public function genre()
     {
         return $this->belongsTo(Genre::class);
+    }
+
+    // Relasi: satu buku bisa muncul di banyak transaksi
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class);
     }
 }
